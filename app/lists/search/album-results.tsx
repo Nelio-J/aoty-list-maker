@@ -1,10 +1,37 @@
 'use client';
 
 import Button from "@/app/ui/button";
-import { Album, SpotifyArtist } from "@/app/lib/definitions";
+import { Album, SpotifyArtist, ListItem } from "@/app/lib/definitions";
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 export default function AlbumResults({ results }: { results: Album[] }) {
+  const router = useRouter()
+
+  function handleAddAlbum(listItem: ListItem) {
+    const saved = localStorage.getItem("albums");
+
+    let itemArray: ListItem[] = [];
+
+    if (saved) {
+      itemArray = JSON.parse(saved);
+    }
+
+    const alreadyExists = itemArray.some(album => album.id === listItem.id);
+    if (alreadyExists) {
+      router.push("/lists/create");
+      console.log(`${listItem.name} is already on your list.`);
+      return;
+    }
+
+    itemArray.push(listItem);
+    localStorage.setItem("albums", JSON.stringify(itemArray));
+    console.log(`Added ${listItem.name} to your list.`);
+
+    // could be replaced with redirect?
+    router.push('/lists/create');
+  }
+
   return (
     <div className="grid lg:grid-cols-5 gap-7 py-8 mb-8 md:grid-cols-3 sm:grid-cols-2">
       {results.map((album: Album) => (
@@ -21,8 +48,13 @@ export default function AlbumResults({ results }: { results: Album[] }) {
           <p className="">{album.release_date}</p>
           <Button
             onClick={() => {
-              console.log(`Add ${album.name} to the list`);
+              handleAddAlbum({
+                id: album.id,
+                name: album.name,
+                images: album.images?.[0]?.url,
+              });
             }}
+            styling="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
           >
             Add to List
           </Button>

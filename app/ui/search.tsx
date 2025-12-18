@@ -1,16 +1,18 @@
 'use client';
 
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from "react";
 
 export default function Search({ placeholder }: { placeholder: string }) {
   const [query, setQuery] = useState("");
+  const router = useRouter()
+
   
   async function handleSearch(e: React.FormEvent) {
     e.preventDefault();
     if (!query.trim()) return;
-    redirect(`/lists/search?query=${query}`);
+    router.push(`/lists/search?query=${query}`);
   }
   
   return (
