@@ -21,18 +21,18 @@ export default function Search({ placeholder }: { placeholder: string }) {
         Search
       </label>
 
-      <form onSubmit={handleSearch}>
+      <form onSubmit={handleSearch} className="flex">
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholder}
-          className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+          className="peer block w-full rounded-md bg-gray-200 border border-gray-200 py-[9px] pl-10 text-sm text-gray-700 outline-2 placeholder:text-gray-600"
         />
-        <button type="submit" className="ml-2 p-2 border">
+        <button type="submit" className="ml-2 p-2 bg-gray-400 border text-zinc-800 rounded cursor-pointer">
           Search
         </button>
       </form>
-      <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+      <MagnifyingGlassIcon className="absolute left-3 top-5 h-[18px] w-[18px] -translate-y-1/2 text-gray-700 peer-focus:text-gray-900" />
     </div>
   );
 }

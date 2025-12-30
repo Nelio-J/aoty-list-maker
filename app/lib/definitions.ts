@@ -24,3 +24,8 @@ export type ListItem = {
   x?: number;
   y?: number
 }
+
+export type PickBackgroundColorProps = {
+  value?: string;
+  onChange?: (color: string) => void;
+};

@@ -4,31 +4,23 @@ import Button from "@/app/ui/button";
 import { Album, SpotifyArtist, ListItem } from "@/app/lib/definitions";
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useLocalStorage } from '@/app/lib/useLocalStorage';
 
 export default function AlbumResults({ results }: { results: Album[] }) {
   const router = useRouter()
+  const [albums, setAlbums] = useLocalStorage<ListItem[]>("albums", []);
 
   function handleAddAlbum(listItem: ListItem) {
-    const saved = localStorage.getItem("albums");
-
-    let itemArray: ListItem[] = [];
-
-    if (saved) {
-      itemArray = JSON.parse(saved);
-    }
-
-    const alreadyExists = itemArray.some(album => album.id === listItem.id);
+    const alreadyExists = albums.some(album => album.id === listItem.id);
     if (alreadyExists) {
       router.push("/lists/create");
       console.log(`${listItem.name} is already on your list.`);
       return;
     }
 
-    itemArray.push(listItem);
-    localStorage.setItem("albums", JSON.stringify(itemArray));
+    setAlbums(prev => [...prev, listItem]);
     console.log(`Added ${listItem.name} to your list.`);
 
-    // could be replaced with redirect?
     router.push('/lists/create');
   }
 
