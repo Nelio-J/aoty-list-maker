@@ -34,7 +34,7 @@ export default function ListItems({ selected, albums, setAlbums }: Props ) {
                 className="aspect-square md:block"
                 alt={`Cover for ${album.name}`}
               />
-                <p className="font-semibold text-3xl md:text-3xl lg:text-3xl xl:text-4xl pb-1 text-center text-shadow-sm text-shadow-zinc-900 line-clamp-2">
+                <p className={`font-semibold text-3xl md:text-3xl lg:text-3xl xl:text-4xl pb-1 text-center text-shadow-sm text-shadow-zinc-900 line-clamp-2`}>
                   {album.name}
                 </p>
                 <Button

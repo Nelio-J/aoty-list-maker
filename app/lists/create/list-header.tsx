@@ -44,7 +44,7 @@ export default function ListHeader({ selected, albums, setAlbums }: Props) {
     <div id="header" className="flex flex-col items-center p-8 h-1/5 mt-10 mb-20">
 
       <input
-        className={`${sixtyfour.className} antialiased text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center w-full text-shadow-lg text-shadow-rose-950`}
+        className={`${sixtyfour.className} antialiased text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center w-full text-shadow-lg text-shadow-rose-950`}
         type="text"
         placeholder="....ALBUM OF THE YEAR"
         maxLength={25}
@@ -65,7 +65,7 @@ export default function ListHeader({ selected, albums, setAlbums }: Props) {
                 className="aspect-square md:block"
                 alt={`Cover for ${first.name}`}
               />
-                <p className={`${gasoekOne.className} font-semibold text-3xl md:text-3xl lg:text-3xl xl:text-4xl pb-1 text-center text-shadow-sm text-shadow-zinc-900 line-clamp-2`}>
+                <p className={`${gasoekOne.className} antialiased z-10 p-2 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center text-shadow-md text-shadow-zinc-900 uppercase`}>
                   {first.name}
                 </p>
                 <Button
