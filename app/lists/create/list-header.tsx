@@ -56,39 +56,33 @@ export default function ListHeader({ selected, albums, setAlbums }: Props) {
         {albums.length === 0 && <p>No albums added yet.</p>}
 
         {/* <div className="border-2 relative border-amber-500 aspect-square h-[470px] w-[470px]"></div> */}
-        {first && (          
-            <div key={first.id} className="relative">
+        {first && (
+          <div key={first.id} className="w-full max-w-[600px]">
+            <div className="relative w-full">
               <Image
                 src={first.images}
                 width={600}
                 height={600}
-                className="aspect-square md:block"
+                className="aspect-square w-full md:block"
                 alt={`Cover for ${first.name}`}
               />
-                <p className={`${gasoekOne.className} antialiased z-10 p-2 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center text-shadow-md text-shadow-zinc-900 uppercase`}>
-                  {first.name}
-                </p>
-                <Button
-                  onClick={() => {
-                    handleRemoveAlbum({
-                      id: first.id,
-                      name: first.name,
-                      images: first.images,
-                    });
-                  }}
-                  styling={selected ? "" : "invisible"}
-                >
-                  <XCircleIcon className="absolute left-3 top-3 h-8 w-8 text-black fill-red-600 hover:text-gray-700 hover:fill-red-400 cursor-pointer" />
-                </Button>
-              </div>
-          // <Image
-          //   src={"https://i.scdn.co/image/ab67616d0000b273a7493f1985f820a9add223d2"}
-          //   width={550}
-          //   height={550}
-          //   className="aspect-square md:block"
-          //   alt={`Decorative border`}
-          // />
-
+              <Button
+                onClick={() => {
+                  handleRemoveAlbum({
+                    id: first.id,
+                    name: first.name,
+                    images: first.images,
+                  });
+                }}
+                styling={selected ? "" : "invisible"}
+              >
+                <XCircleIcon className="absolute left-3 top-3 h-8 w-8 text-black fill-red-600 hover:text-gray-700 hover:fill-red-400 cursor-pointer" />
+              </Button>
+            </div>
+            <p className={`${gasoekOne.className} antialiased z-10 px-2 font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center text-shadow-md text-shadow-zinc-900 uppercase wrap-break-word`}>
+              {first.name}
+            </p>
+          </div>
         )}
         {/* <Image
           src={"/list-decoration/aoty-border-square.png"}
